@@ -4,7 +4,7 @@
  * Email: 272067516@qq.com
  * Date: 2016-7-28
  * Time: 9:05
- * Description:
+ * Description:基础控制器
  */
 
 namespace backend\controllers;
@@ -28,20 +28,19 @@ class CommonController extends Controller{
         /*获取路径*/
         $action = Yii::$app->controller->module->requestedRoute;
 
-        $ignoreList = array('index/welcome','site/index');        //权限忽略列表
-
-        if (in_array($action, $ignoreList)) {
+        if(Yii::$app->user->identity->getId() == Yii::$app->params['admin']){   //是否是超级管理员UID
             return true;
         }
 
-        if(Yii::$app->user->identity->getId() == Yii::$app->params['admin']){   //是否是超级管理员UID
+        $ignoreList = array('index/welcome','site/index','site/login','site/logout');        //权限忽略列表
+        if (in_array($action, $ignoreList)) {
             return true;
         }
 
         if (Yii::$app->user->can($action)) {
             return true;
         } else {
-            $this->error('对不起，您现在还没获此操作的权限');
+            $this->error('对不起，您没有此操作的权限');
         }
     }
 
@@ -116,7 +115,6 @@ class CommonController extends Controller{
                 'jumpUrl' => $jumpUrl,
             ]);
         }
-        //Yii::$app->end();
         exit;
     }
 
@@ -132,7 +130,6 @@ class CommonController extends Controller{
         // 返回JSON数据格式到客户端 包含状态信息
         header('Content-Type:application/json; charset=utf-8');
         echo json_encode($data);
-        //Yii::$app->end();
         exit;
     }
 

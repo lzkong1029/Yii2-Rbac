@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 use backend\models\Log;
-use backend\models\Menu;
 use backend\models\PasswordForm;
 use yii\data\Pagination;
 
@@ -17,7 +16,7 @@ class IndexController extends CommonController
         return $this->render('index');
     }
 
-
+    /*欢迎首页*/
     public function actionWelcome()
     {
         //登录记录

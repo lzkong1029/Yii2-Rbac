@@ -1,9 +1,7 @@
 <?php
 
 namespace backend\controllers;
-use yii\web\Controller;
 use backend\models\AuthItem;
-use backend\models\Menu;
 use backend\models\PasswordForm;
 use yii\data\Pagination;
 use backend\models\User;
@@ -61,7 +59,7 @@ class UserController extends CommonController
             $model->save();
             //获取插入后id
             $user_id = $model->attributes['id'];
-            $role = $auth->createRole($post['AuthItem']['name']);                //创建角色对象
+            $role = $auth->createRole($post['AuthItem']['name']);     //创建角色对象
             $auth->assign($role, $user_id);                           //添加对应关系
 
             return $this->redirect(['list']);
@@ -103,10 +101,10 @@ class UserController extends CommonController
             }
             $model1->save($post);
             //分配角色
-            $role = $auth->createRole($post['AuthAssignment']['item_name']);                //创建角色对象
-            $user_id = $id;                                             //获取用户id，此处假设用户id=1
+            $role = $auth->createRole($post['AuthAssignment']['item_name']);    //创建角色对象
+            $user_id = $id;
             $auth->revokeAll($user_id);
-            $auth->assign($role, $user_id);                           //添加对应关系
+            $auth->assign($role, $user_id);       //分配角色与用户对应关系
 
             return $this->redirect(['user/update', 'id' => $model1->id]);
         }

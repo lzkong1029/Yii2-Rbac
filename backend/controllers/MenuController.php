@@ -4,12 +4,8 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Menu;
-use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use backend\models\AuthItem;
-use yii\data\Pagination;
+
 
 /**
  * 菜单控制器
@@ -117,7 +113,7 @@ class MenuController extends CommonController
         if (($model = Menu::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            $this->error('删除失败！');
         }
     }
 

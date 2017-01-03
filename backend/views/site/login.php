@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     </div>
     <div class="footer">
-        <div class="">Copyright &copy; 2012-2016 <a href="http://1000xun.findz.cn/" target="_blank">Findz.cn</a>
+        <div class="">Copyright &copy; 2012-2016 <a href="http://www.quxdui.com/" target="_blank">Quxdui.com</a>
         </div>
     </div>
 </div>
