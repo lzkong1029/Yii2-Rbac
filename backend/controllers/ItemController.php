@@ -81,7 +81,6 @@ class ItemController extends CommonController
 
         if (Yii::$app->request->post()) {
             $rules = Yii::$app->request->post('permission');
-            //var_dump($rules);exit;
             /* 判断角色是否存在 */
             if (!$parent = $auth->getRole($role)) {
                 echo '角色不存在';

@@ -131,7 +131,7 @@ class UserController extends CommonController
         if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            $this->error('删除失败！');
         }
     }
 
