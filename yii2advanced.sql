@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-12-30 17:35:58
+Date: 2017-01-03 14:00:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,16 +30,8 @@ CREATE TABLE `auth_assignment` (
 -- ----------------------------
 -- Records of auth_assignment
 -- ----------------------------
-INSERT INTO `auth_assignment` VALUES ('普通用户', '12', '1460425053');
-INSERT INTO `auth_assignment` VALUES ('普通管理员', '14', '1460425467');
-INSERT INTO `auth_assignment` VALUES ('普通管理员', '15', '1460425522');
-INSERT INTO `auth_assignment` VALUES ('普通管理员', '16', '1460426459');
-INSERT INTO `auth_assignment` VALUES ('普通管理员', '17', '1460441363');
-INSERT INTO `auth_assignment` VALUES ('普通管理员', '18', '1460687341');
-INSERT INTO `auth_assignment` VALUES ('普通管理员', '19', '1460687688');
-INSERT INTO `auth_assignment` VALUES ('普通管理员', '27', '1467597600');
 INSERT INTO `auth_assignment` VALUES ('普通管理员', '4', null);
-INSERT INTO `auth_assignment` VALUES ('普通管理员', '5', '1482905674');
+INSERT INTO `auth_assignment` VALUES ('普通管理员', '6', '1483423097');
 INSERT INTO `auth_assignment` VALUES ('超级管理员', '1', '1460687522');
 
 -- ----------------------------
@@ -63,6 +55,7 @@ CREATE TABLE `auth_item` (
 -- ----------------------------
 -- Records of auth_item
 -- ----------------------------
+INSERT INTO `auth_item` VALUES ('item/create', '2', null, 'item/create', null, '1483422367', '1483422367');
 INSERT INTO `auth_item` VALUES ('item/index', '2', '创建了[item/index]权限', null, null, '1459243859', '1459243859');
 INSERT INTO `auth_item` VALUES ('item/manage', '2', '创建了[item/manage]权限', null, null, '1459243859', '1459243859');
 INSERT INTO `auth_item` VALUES ('item/permission', '2', '创建了[item/permission]权限', null, null, '1482892694', '1482892694');
@@ -75,8 +68,10 @@ INSERT INTO `auth_item` VALUES ('menu/update', '2', '创建了[menu/update]权�
 INSERT INTO `auth_item` VALUES ('system/manage', '2', '创建了[item/manage]权限', null, null, '1459243859', '1459243859');
 INSERT INTO `auth_item` VALUES ('test/index', '2', null, 'test/index', null, '1483089854', '1483089854');
 INSERT INTO `auth_item` VALUES ('user/create', '2', null, null, null, null, null);
+INSERT INTO `auth_item` VALUES ('user/delete', '2', null, 'user/delete', null, '1483421739', '1483421739');
 INSERT INTO `auth_item` VALUES ('user/list', '2', '创建了[user/list]权限', null, null, '1482905245', '1482905245');
 INSERT INTO `auth_item` VALUES ('user/manage', '2', '创建了[test/index]权限', null, null, '1460715690', '1460715690');
+INSERT INTO `auth_item` VALUES ('user/update', '2', null, 'user/update', null, '1483421739', '1483421739');
 INSERT INTO `auth_item` VALUES ('普通用户', '1', '创建[普通用户]角色', null, null, '1459502750', '1459502750');
 INSERT INTO `auth_item` VALUES ('普通管理员', '1', '拥有后台管理权限', null, null, '1458195329', '1458195329');
 INSERT INTO `auth_item` VALUES ('网站编辑', '1', '拥有编辑权限', null, null, '1458195363', '1458195363');
@@ -98,6 +93,8 @@ CREATE TABLE `auth_item_child` (
 -- ----------------------------
 -- Records of auth_item_child
 -- ----------------------------
+INSERT INTO `auth_item_child` VALUES ('普通管理员', 'item/create');
+INSERT INTO `auth_item_child` VALUES ('超级管理员', 'item/create');
 INSERT INTO `auth_item_child` VALUES ('普通管理员', 'item/index');
 INSERT INTO `auth_item_child` VALUES ('超级管理员', 'item/index');
 INSERT INTO `auth_item_child` VALUES ('普通管理员', 'item/manage');
@@ -122,10 +119,12 @@ INSERT INTO `auth_item_child` VALUES ('普通管理员', 'test/index');
 INSERT INTO `auth_item_child` VALUES ('超级管理员', 'test/index');
 INSERT INTO `auth_item_child` VALUES ('普通管理员', 'user/create');
 INSERT INTO `auth_item_child` VALUES ('超级管理员', 'user/create');
+INSERT INTO `auth_item_child` VALUES ('超级管理员', 'user/delete');
 INSERT INTO `auth_item_child` VALUES ('普通管理员', 'user/list');
 INSERT INTO `auth_item_child` VALUES ('超级管理员', 'user/list');
 INSERT INTO `auth_item_child` VALUES ('普通管理员', 'user/manage');
 INSERT INTO `auth_item_child` VALUES ('超级管理员', 'user/manage');
+INSERT INTO `auth_item_child` VALUES ('超级管理员', 'user/update');
 
 -- ----------------------------
 -- Table structure for auth_rule
@@ -142,6 +141,7 @@ CREATE TABLE `auth_rule` (
 -- ----------------------------
 -- Records of auth_rule
 -- ----------------------------
+INSERT INTO `auth_rule` VALUES ('item/create', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:11:\"item/create\";s:9:\"createdAt\";i:1483422367;s:9:\"updatedAt\";i:1483422367;}', '1483422367', '1483422367');
 INSERT INTO `auth_rule` VALUES ('item/index', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:10:\"item/index\";s:9:\"createdAt\";i:1483089704;s:9:\"updatedAt\";i:1483089704;}', '1483089704', '1483089704');
 INSERT INTO `auth_rule` VALUES ('item/manage', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:11:\"item/manage\";s:9:\"createdAt\";i:1483089703;s:9:\"updatedAt\";i:1483089703;}', '1483089703', '1483089703');
 INSERT INTO `auth_rule` VALUES ('item/permission', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:15:\"item/permission\";s:9:\"createdAt\";i:1483089703;s:9:\"updatedAt\";i:1483089703;}', '1483089703', '1483089703');
@@ -154,8 +154,10 @@ INSERT INTO `auth_rule` VALUES ('menu/update', 'O:21:\"common\\core\\rbac\\Rule\
 INSERT INTO `auth_rule` VALUES ('system/manage', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:13:\"system/manage\";s:9:\"createdAt\";i:1483089703;s:9:\"updatedAt\";i:1483089703;}', '1483089703', '1483089703');
 INSERT INTO `auth_rule` VALUES ('test/index', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:10:\"test/index\";s:9:\"createdAt\";i:1483089740;s:9:\"updatedAt\";i:1483089740;}', '1483089740', '1483089740');
 INSERT INTO `auth_rule` VALUES ('user/create', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:11:\"user/create\";s:9:\"createdAt\";i:1483089703;s:9:\"updatedAt\";i:1483089703;}', '1483089703', '1483089703');
+INSERT INTO `auth_rule` VALUES ('user/delete', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:11:\"user/delete\";s:9:\"createdAt\";i:1483421739;s:9:\"updatedAt\";i:1483421739;}', '1483421739', '1483421739');
 INSERT INTO `auth_rule` VALUES ('user/list', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:9:\"user/list\";s:9:\"createdAt\";i:1483089703;s:9:\"updatedAt\";i:1483089703;}', '1483089703', '1483089703');
 INSERT INTO `auth_rule` VALUES ('user/manage', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:11:\"user/manage\";s:9:\"createdAt\";i:1483089703;s:9:\"updatedAt\";i:1483089703;}', '1483089703', '1483089703');
+INSERT INTO `auth_rule` VALUES ('user/update', 'O:21:\"common\\core\\rbac\\Rule\":3:{s:4:\"name\";s:11:\"user/update\";s:9:\"createdAt\";i:1483421739;s:9:\"updatedAt\";i:1483421739;}', '1483421739', '1483421739');
 
 -- ----------------------------
 -- Table structure for country
@@ -193,7 +195,7 @@ CREATE TABLE `log` (
   `data` varchar(64) DEFAULT NULL,
   `create_time` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of log
@@ -217,6 +219,8 @@ INSERT INTO `log` VALUES ('16', 'admin', '127.0.0.1', '', '1460713859');
 INSERT INTO `log` VALUES ('17', 'admin', '127.0.0.1', '', '1466130336');
 INSERT INTO `log` VALUES ('18', 'admin', '127.0.0.1', '', '1481181682');
 INSERT INTO `log` VALUES ('19', 'admin', '127.0.0.1', '', '1482823318');
+INSERT INTO `log` VALUES ('20', 'admin', '127.0.0.1', '', '1483422295');
+INSERT INTO `log` VALUES ('21', 'test123', '127.0.0.1', '', '1483423113');
 
 -- ----------------------------
 -- Table structure for menu
@@ -235,7 +239,7 @@ CREATE TABLE `menu` (
   KEY `name` (`name`),
   KEY `route` (`route`(255)),
   KEY `order` (`sort`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COMMENT='系统管理员菜单权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COMMENT='系统管理员菜单权限表';
 
 -- ----------------------------
 -- Records of menu
@@ -247,13 +251,16 @@ INSERT INTO `menu` VALUES ('21', '菜单管理', '2', 'menu/manage', null, '', '
 INSERT INTO `menu` VALUES ('40', '新增菜单', '21', 'menu/create', '', '', '0');
 INSERT INTO `menu` VALUES ('41', '配置权限', '19', 'item/set', '', '', '0');
 INSERT INTO `menu` VALUES ('42', '编辑菜单', '21', 'menu/update', '', '', '0');
-INSERT INTO `menu` VALUES ('43', '权限列表', '19', 'item/permission', '', '', '1');
-INSERT INTO `menu` VALUES ('44', '新增用户', '16', 'user/create', '', '', '1');
+INSERT INTO `menu` VALUES ('43', '权限列表', '19', 'item/permission', '', '', '0');
+INSERT INTO `menu` VALUES ('44', '新增用户', '16', 'user/create', '', '', '0');
 INSERT INTO `menu` VALUES ('45', '菜单列表', '21', 'menu/index', '', '', '1');
 INSERT INTO `menu` VALUES ('47', '删除菜单', '21', 'menu/delete', '', '', '0');
 INSERT INTO `menu` VALUES ('48', '角色列表', '19', 'item/index', '', '', '1');
 INSERT INTO `menu` VALUES ('49', '用户列表', '16', 'user/list', '', '', '1');
 INSERT INTO `menu` VALUES ('50', '测试', '0', 'test/index', '', '', '1');
+INSERT INTO `menu` VALUES ('51', '更新用户', '16', 'user/update', '', '', '0');
+INSERT INTO `menu` VALUES ('52', '删除用户', '16', 'user/delete', '', '', '0');
+INSERT INTO `menu` VALUES ('53', '新建角色', '19', 'item/create', '', '', '0');
 
 -- ----------------------------
 -- Table structure for migration
@@ -498,13 +505,14 @@ CREATE TABLE `user` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', 'C5f5K1Kg8tL-IutYAom4-s7RMh_xMk_l', '$2y$13$zUhKPW6Y69gn.DDWjSI.kOp9OXZWSuMDTq5JRZvw6yK9dr2QK43qu', null, '272067517@qq.com', '10', '1467626063', '1467626063');
 INSERT INTO `user` VALUES ('4', 'test', '0EnLHzmdFPf4WpEO7o-CUc1ahYpsvLv2', '$2y$13$0YedVUlB8TthlCC5rTGZyeEQQzw3FqwknlrQwm/9hPQu1v5lYY/He', null, '272067517@qq.com', '10', '1482905655', '0');
+INSERT INTO `user` VALUES ('6', 'test123', 'AEaEXJaXirQJSggbHNY72SNLejVoeuUQ', '$2y$13$DQSwXPD.2SpCj.TV25Pp2.zmPCLAeZ8Z1tmI1/XuquydF9er6frie', null, 'qqww@qq.com', '10', '1483423097', '0');
 
 -- ----------------------------
 -- Procedure structure for test1
