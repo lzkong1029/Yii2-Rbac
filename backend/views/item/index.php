@@ -16,8 +16,8 @@ $this->params['breadcrumbs'][] = $this-> title;
         <div class="row">
             <div class="col-sm-6 m-b-xs">
                 <?=Html::a("创建 <i class='icon-plus'></i>" , ['create' ], ['class' => 'btn btn-sm btn-primary'])?>
-                <a class="btn btn-info btn-sm" href="<?= Url::toRoute('item/index')?>">角色管理</a>
-                <a class="btn btn-info btn-sm" href="<?= Url::toRoute('item/permission')?>">权限管理</a>
+                <!--<a class="btn btn-info btn-sm" href="--><?//= Url::toRoute('item/index')?><!--">角色管理</a>-->
+                <!--<a class="btn btn-info btn-sm" href="--><?//= Url::toRoute('item/permission')?><!--">权限管理</a>-->
             </div>
         </div>
         <hr>
