@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <?php foreach($vo['_child'] as $v):?>
                                                 <tr>
                                                 <td><?=$v['id']?></td>
-                                                <td>&nbsp;&nbsp;&nbsp;&nbsp;|--<?=$v['name']?></td>
+                                                <td>&nbsp;&nbsp;&nbsp;&nbsp;┝<?=$v['name']?></td>
                                                 <td><?=$v['parent']?></td>
                                                 <td><?=$v['route']?></td>
                                                 <td><?=$v['status'] > 0 ? '<span class="label label-info">显示</span>' : '<span class="label label-error">隐藏</span>'?></td>
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?php foreach($v['_child'] as $v3):?>
                                                         <tr>
                                                             <td><?=$v3['id']?></td>
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--<?=$v3['name']?></td>
+                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┝<?=$v3['name']?></td>
                                                             <td><?=$v3['parent']?></td>
                                                             <td><?=$v3['route']?></td>
                                                             <td><?=$v3['status'] > 0 ? '<span class="label label-info">显示</span>' : '<span class="label label-error">隐藏</span>'?></td>

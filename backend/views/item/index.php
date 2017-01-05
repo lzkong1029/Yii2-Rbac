@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this-> title;
         <div class="table-responsive">
 
 
-            <table class ="table table-striped table_base">
+            <table class ="table table-striped table_base table-bordered">
                 <thead >
                 <tr >
                     <th >ID</th >
