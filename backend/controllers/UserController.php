@@ -76,7 +76,6 @@ class UserController extends CommonController
      * 更新用户
      */
     public function actionUpdate(){
-        $item_name = Yii::$app->request->get('item_name');
         $id = Yii::$app->request->get('id');
         $model = User::find()->joinWith('usergroup')->where(['id'=>$id])->one();
         $auth = Yii::$app->authManager;
@@ -100,11 +99,13 @@ class UserController extends CommonController
                 $model1->auth_key = $post['User']['auth_key'];
             }
             $model1->save($post);
-            //分配角色
-            $role = $auth->createRole($post['AuthAssignment']['item_name']);    //创建角色对象
-            $user_id = $id;
-            $auth->revokeAll($user_id);
-            $auth->assign($role, $user_id);       //分配角色与用户对应关系
+            if(!empty($post['AuthAssignment']['item_name'])){
+                //分配角色
+                $role = $auth->createRole($post['AuthAssignment']['item_name']);    //创建角色对象
+                $user_id = $id;
+                $auth->revokeAll($user_id);
+                $auth->assign($role, $user_id);       //分配角色与用户对应关系
+            }
 
             return $this->redirect(['user/update', 'id' => $model1->id]);
         }
