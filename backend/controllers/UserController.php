@@ -50,19 +50,28 @@ class UserController extends CommonController
         }
 
         if ($model->load(Yii::$app->request->post())) {
+            /* 表单验证 */
             $post = Yii::$app->request->post();
-            $model->username = $post['User']['username'];
-            $model->email = $post['User']['email'];
-            $model->setPassword($post['User']['auth_key']);
+            $data = $post['User'];
+            $data['created_at']     = time();
+            /* 表单数据加载和验证，具体验证规则在模型rule中配置 */
+            /* 密码单独验证，否则setPassword后密码肯定符合rule */
+            if (empty($data['auth_key']) || strlen($data['auth_key']) < 6) {
+                $this->error('密码为空或小于6字符');
+            }
+            $model->setAttributes($data);
             $model->generateAuthKey();
-            $model->created_at = time();
-            $model->save();
-            //获取插入后id
-            $user_id = $model->attributes['id'];
-            $role = $auth->createRole($post['AuthItem']['name']);     //创建角色对象
-            $auth->assign($role, $user_id);                           //添加对应关系
-
-            return $this->redirect(['list']);
+            $model->setPassword($data['auth_key']);
+            /* 保存用户数据到数据库 */
+            if ($model->save()) {
+                //获取插入后id
+                $user_id = $model->attributes['id'];
+                $role = $auth->createRole($post['AuthItem']['name']);     //创建角色对象
+                $auth->assign($role, $user_id);                           //添加对应关系
+                return $this->redirect(['list']);
+            }else{
+                $this->error('操作错误');
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -122,7 +131,7 @@ class UserController extends CommonController
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        return $this->redirect(['list']);
+        $this->success('删除成功！','list');
     }
 
     protected function findModel($id)

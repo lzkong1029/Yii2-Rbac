@@ -83,7 +83,7 @@ class ItemController extends CommonController
             $rules = Yii::$app->request->post('permission');
             /* 判断角色是否存在 */
             if (!$parent = $auth->getRole($role)) {
-                echo '角色不存在';
+                $this->error('角色不存在！');
             }
 
             /* 删除角色所有child */
